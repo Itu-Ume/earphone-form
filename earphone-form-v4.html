@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap');
 :root{--bg:#f7f6f4;--surface:#fff;--accent:#c8102e;--al:#fdf0f2;--ad:#9e0020;--text:#1e1e1e;--sub:#777;--border:#e4e0dc;--ok:#2a8a5c;--okl:#eaf6f0;--shadow:0 4px 20px rgba(0,0,0,.07);--r:16px;--cc:#1a1f36;--cct:#e8eaf6}
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;justify-content:center;padding-bottom:64px}
 .wrap{width:100%;max-width:390px;display:flex;flex-direction:column}
 .hdr{background:var(--surface);padding:13px 16px 11px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;align-items:center;gap:10px}
@@ -40,7 +40,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .sinput:focus{border-color:var(--accent)}
 .sbtn{background:var(--accent);border:none;border-radius:8px;padding:8px 12px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;white-space:nowrap}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
-.pcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:12px 8px 11px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .18s;position:relative}
+.pcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:12px 8px 11px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all .18s;position:relative;touch-action:manipulation}
 .pcard:active{transform:scale(.97)}
 .pcard.sel{border-color:var(--accent);background:var(--al)}
 .cbadge{display:none;position:absolute;top:7px;right:7px;width:17px;height:17px;background:var(--accent);border-radius:50%;align-items:center;justify-content:center}
@@ -71,7 +71,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .vd{font-size:9.5px;color:var(--sub)}
 .vm{font-family:'Outfit',sans-serif;font-size:10.5px;font-weight:600;color:var(--accent);background:var(--al);border-radius:5px;padding:3px 8px;white-space:nowrap}
 .clist{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.ccard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .18s}
+.ccard{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .18s;touch-action:manipulation}
 .ccard.sel{border-color:var(--accent);background:var(--al)}
 .cswatch{width:36px;height:36px;border-radius:50%;flex-shrink:0;border:2px solid rgba(0,0,0,.07)}
 .cinfo{flex:1}
@@ -194,7 +194,7 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 
 /* ===== 別フォーム ===== */
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;justify-content:center;padding-bottom:64px}
 .wrap{width:100%;max-width:390px;display:flex;flex-direction:column}
 .hdr{background:var(--surface);padding:13px 16px 11px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;align-items:center;gap:10px}
@@ -235,6 +235,103 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .done-val{font-weight:700;text-align:right;max-width:60%}
 .done-notice{background:#fff8e6;border:1px solid #f5d888;border-radius:10px;padding:12px;font-size:11px;line-height:1.8;color:#7a5a10;margin-bottom:16px}
 
+
+/* ========== レスポンシブ対応 ========== */
+
+/* PC共通：中央寄せ・最大幅拡張 */
+@media(min-width:768px){
+  body{background:#eceae6;align-items:flex-start;padding-top:32px;padding-bottom:64px}
+  .wrap{max-width:860px;background:transparent;border-radius:0;box-shadow:none}
+
+  /* ヘッダー */
+  .hdr{max-width:860px;margin:0 auto;border-radius:12px 12px 0 0;padding:16px 32px 14px}
+  .hdr-logo svg{height:36px}
+  .hdr-title{font-size:15px}
+
+  /* ステッパー */
+  .stepper{padding:20px 32px 0;gap:0}
+  .sc{width:28px;height:28px;font-size:11px}
+  .sl{font-size:12px;margin-top:5px}
+
+  /* セクション共通 */
+  .sec{padding:24px 32px 0}
+  .st{font-size:18px;margin-bottom:6px}
+  .ss{font-size:12px;margin-bottom:18px}
+
+  /* STEP1：製品グリッド → PC=3列×2行 */
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:14px}
+  .pcard{padding:16px 10px 14px;gap:8px}
+  .pthumb{width:100px;height:100px}
+  .pname{font-size:13px}
+
+  /* STEP1：型番検索バー */
+  .sbar{background:var(--surface);border-radius:12px;padding:14px 18px;margin-bottom:14px}
+  .sbar-t{font-size:12px;margin-bottom:8px}
+  .sinput{font-size:14px;padding:10px 14px}
+  .sbtn{font-size:12px;padding:10px 16px}
+
+  /* STEP1：バリアントパネル */
+  .vlist{grid-template-columns:repeat(3,1fr);gap:10px}
+  .vitem.card .vcard-img{height:130px}
+
+  /* STEP2：カラー → 2列×3行 */
+  .clist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .ccard{border-radius:10px}
+
+  /* STEP3：住所フォーム → 2カラムレイアウト */
+  .namerow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .kanarow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fwrap{margin-bottom:14px}
+  .finput{font-size:14px;padding:10px 12px}
+  .flabel{font-size:12px}
+
+  /* STEP4：確認エリア */
+  .pconfirm{padding:20px}
+  .pcimg{width:120px;height:120px}
+  .pcmodel{font-size:18px}
+  .sumcard{border-radius:14px}
+  .sumrow{padding:12px 18px;font-size:13px}
+  .suml{font-size:12px}
+
+  /* ボタン */
+  .btnp{font-size:15px;padding:16px;border-radius:12px}
+  .btns{font-size:14px;padding:14px;border-radius:12px}
+
+  /* カード背景 */
+  .sec.on > .card,
+  .sec.on > .sumcard,
+  .sec.on > .pconfirm{
+    background:var(--surface);
+    border-radius:14px;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);
+    padding:20px 24px;
+    margin-bottom:14px;
+  }
+
+  /* 完了画面 */
+  .done{padding:32px 48px}
+  .done-t{font-size:22px}
+  .done-card{padding:20px 24px}
+
+  /* モーダル */
+  .modal-box{max-width:400px}
+}
+
+/* タブレット中間 */
+@media(min-width:768px) and (max-width:1023px){
+  .wrap{max-width:720px}
+  .hdr{max-width:720px}
+  .pgrid{grid-template-columns:repeat(3,1fr)}
+  .vlist{grid-template-columns:repeat(2,1fr)}
+}
+
+/* 大画面PC */
+@media(min-width:1024px){
+  .wrap{max-width:900px}
+  .hdr{max-width:900px}
+  .sec{padding:28px 40px 0}
+  .pthumb{width:110px;height:110px}
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako_inflate.min.js"></script>
 <script>
@@ -366,7 +463,7 @@ function autoAddr(){
     <div class="pmodel">エントリーモデル</div>
     <div class="ptag tag-popular">エントリー</div>
   </div>
-  <div class="otherbtn" style="margin:0;border-radius:var(--r);flex-direction:column;gap:6px;height:100%" onclick="selOther()">
+  <div class="otherbtn" style="touch-action:manipulation" style="margin:0;border-radius:var(--r);flex-direction:column;gap:6px;height:100%" onclick="selOther()">
     <img src="data:image/jpeg;base64,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" style="width:68px;height:68px;object-fit:contain;pointer-events:none">
     <span style="font-size:11px;font-weight:700;color:var(--sub);text-align:center;line-height:1.5">上記以外の<br>機種はこちら</span>
   </div>
@@ -404,12 +501,16 @@ function autoAddr(){
 </div>
 <div class="fgroup">
   <div class="frow">
-    <div class="fwrap"><div class="flabel">姓 <span class="req">必須</span></div><input class="finput" type="text" placeholder="山田" id="f-ln" oninput="chk3()"></div>
-    <div class="fwrap"><div class="flabel">名 <span class="req">必須</span></div><input class="finput" type="text" placeholder="花子" id="f-fn" oninput="chk3()"></div>
+    <div class="namerow">
+      <div class="fwrap"><div class="flabel">姓 <span class="req">必須</span></div><input class="finput" type="text" placeholder="山田" id="f-ln" oninput="chk3()"></div>
+      <div class="fwrap"><div class="flabel">名 <span class="req">必須</span></div><input class="finput" type="text" placeholder="花子" id="f-fn" oninput="chk3()"></div>
+    </div>
   </div>
   <div class="frow">
-    <div class="fwrap"><div class="flabel">セイ <span class="req">必須</span></div><input class="finput" type="text" placeholder="ヤマダ" id="f-lk" oninput="chk3()"></div>
-    <div class="fwrap"><div class="flabel">メイ <span class="req">必須</span></div><input class="finput" type="text" placeholder="ハナコ" id="f-fk" oninput="chk3()"></div>
+    <div class="kanarow">
+      <div class="fwrap"><div class="flabel">セイ <span class="req">必須</span></div><input class="finput" type="text" placeholder="ヤマダ" id="f-lk" oninput="chk3()"></div>
+      <div class="fwrap"><div class="flabel">メイ <span class="req">必須</span></div><input class="finput" type="text" placeholder="ハナコ" id="f-fk" oninput="chk3()"></div>
+    </div>
   </div>
   <div class="fwrap">
     <div class="flabel">電話番号 <span class="req">必須</span></div>
@@ -722,11 +823,16 @@ function selPSingle(id,name,svgKey){
   document.getElementById('vpanel').classList.remove('on');
   document.getElementById('s1next').disabled=false;
 }
-document.getElementById('p-sq1tw').onclick=()=>selPGroup('p-sq1tw','ATH-SQ1TW 系','SQ1');
-document.getElementById('p-cks30').onclick=()=>selPGroup('p-cks30','ATH-CKS30TW 系','CKS30');
-document.getElementById('p-cks50').onclick=()=>selPGroup('p-cks50','ATH-CKS50TW 系','CKS50');
-document.getElementById('p-twx').onclick=()=>selPGroup('p-twx','ATH-TWX 系','TWX');
-document.getElementById('p-ck1tw').onclick=()=>selPSingle('p-ck1tw','ATH-CK1TW','entry');
+function addTap(id,fn){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.addEventListener('click',fn);
+}
+addTap('p-sq1tw',()=>selPGroup('p-sq1tw','ATH-SQ1TW 系','SQ1'));
+addTap('p-cks30',()=>selPGroup('p-cks30','ATH-CKS30TW 系','CKS30'));
+addTap('p-cks50',()=>selPGroup('p-cks50','ATH-CKS50TW 系','CKS50'));
+addTap('p-twx',()=>selPGroup('p-twx','ATH-TWX 系','TWX'));
+addTap('p-ck1tw',()=>selPSingle('p-ck1tw','ATH-CK1TW','entry'));
 
 function buildVariants(list){
   const el=document.getElementById('vlist');
@@ -742,7 +848,7 @@ function buildVariants(list){
       d.innerHTML=`<div class="vl"><div class="vn">${v.name}</div><div class="vd">${v.desc}</div></div><div class="vm">${v.model}</div>`;
       d.style.alignItems='center';
     }
-    d.onclick=()=>selVariant(v.model,v.name,v.svgKey);
+    d.addEventListener('click',()=>selVariant(v.model,v.name,v.svgKey));
     el.appendChild(d);
   });
 }
@@ -842,7 +948,7 @@ function renderColors(model){
     const div=document.createElement('div');
     div.className='ccard';div.id='cc-'+c.id;
     div.innerHTML=`<div class="cswatch" style="background:${c.css}"></div><div class="cinfo"><div class="cn">${c.name}</div>${c.note?`<div class="cnote">${c.note}</div>`:''}</div><div class="cradio"></div>`;
-    div.onclick=()=>selColor('cc-'+c.id,c.name);
+    div.addEventListener('click',()=>selColor('cc-'+c.id,c.name));
     list.appendChild(div);
   });
   st.color='';st.colorName='';
